@@ -4,7 +4,7 @@ import React, { useContext } from "react";
 import { ItemContext } from "../context/ItemContext";
 
 const ProductItem = ({ product}) => {
-	const {addToCart, removeFromCart} = useContext(ItemContext);
+	const { addToCart, removeFromCart } = useContext(ItemContext);
 
 	const handleAddToCart = () => {
 		if (!product || !product._id) {
@@ -31,9 +31,9 @@ const ProductItem = ({ product}) => {
 			  src={product.image}
 			  alt={product.title}
 			  />
-			  <div className="product-details">
+			<div className="product-details">
 			  <h3 style={{fontWeight: "700"}}>{product.title}</h3>
-			  <p style={{fontWeight: "300"}}>{product.decription}</p>
+			  <p style={{fontWeight: "300"}}>{product.description}</p>
 			  <p style={{fontWeight: "500"}}>Price: ${product.price}</p>
 			  <p>{product.genre}</p>
 			  <p style={{fontWeight: "700", color: "brown"}}>

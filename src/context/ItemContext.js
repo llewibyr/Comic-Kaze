@@ -13,14 +13,14 @@ const CustomItemContext = ({ children }) => {
 
 	const updateCartState = (cartData) => {
 		setCart(cartData.items || []);
-		setItemsInCart(cartData.items.reduce((total, item) => total + item.quanitity, 0));
+		setItemsInCart(cartData.items.reduce((total, item) => total + item.quantity, 0));
 		setTotalPrice(cartData.total || 0);
 	};
 	// useEffect to load all the vegetables
 	useEffect(() => {
         const fetchData = async () => {
           try {
-            const response = await fetch("http:/localhost:5001/api/book");
+            const response = await fetch("http://localhost:5001/api/books");
             if (!response.ok) {
               throw new Error(`HTTP error! status: ${response.status}`);
             }
@@ -96,7 +96,6 @@ const CustomItemContext = ({ children }) => {
 		  }
 
 		  const updatedCart = await response.json();
-		  updateCartState(updatedCart);
 		  setCart(updatedCart.items || []);
 		  setItemsInCart(updatedCart.items?.length || 0);
 		  setTotalPrice(updatedCart.total || 0);
