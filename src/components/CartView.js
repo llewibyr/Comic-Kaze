@@ -8,14 +8,18 @@ const CartView = () => {
       <div className="cart-container">
         <h2>Shopping Cart</h2>
         {cart.map((item) => (
-          <div key={item.bookId} className="cart-item">
+          <div key={item._id || item.bookId?.toString()} className="cart-item">
             <img src={item.image} alt={item.title} className="cart-item-image" />
             <div className="cart-item-details">
               <h3>{item.title}</h3>
               <p>Author: {item.author}</p>
               <p>Price: ${item.price}</p>
               <p>Quantity: {item.quantity}</p>
-              <button onClick={() => removeFromCart(item)}>Remove One</button>
+              <button onClick={() => {
+                   removeFromCart(item._id || item.bookId);
+                  }}>
+                    Remove One
+                </button>
             </div>
           </div>
         ))}

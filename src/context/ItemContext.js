@@ -54,34 +54,37 @@ const CustomItemContext = ({ children }) => {
       
 	  const addToCart = async (product) => {
 		try {
-			console.log('adding to cart:', product)
-		  const response = await fetch('http://localhost:5001/api/cart/add', {
-			method: 'POST',
-			headers: {
-			  'Content-Type': 'application/json',
-			},
-			body: JSON.stringify ({
-				bookId: product._id,
+			const requestBody = {
+				_id: product._id,  // Ensure this matches the backend expectation
 				title: product.title,
 				author: product.author,
 				price: product.price,
-                image: product.image,
-			}),
-		  });
+				image: product.image,
+			};
 
-		  if (!response.ok) {
-			throw new Error(`HTTP error! ${response.status}`);
-		  }
-
-		  const updatedCart = await response.json();
-		  updateCartState(updatedCart);
-		  setCart(updatedCart.items || []);
-		  setItemsInCart(updatedCart.items?.length || 0);
-		  setTotalPrice(updatedCart.total || 0);
+			console.log('adding to cart:', product);
+	
+			const response = await fetch('http://localhost:5001/api/cart/add', {
+				method: 'POST',
+				headers: {
+					'Content-Type': 'application/json',
+				},
+				body: JSON.stringify(requestBody)
+			});
+	
+			if (!response.ok) {
+				throw new Error(`HTTP error! ${response.status}`);
+			}
+	
+			const updatedCart = await response.json();
+			updateCartState(updatedCart);
+			setCart(updatedCart.items || []);
+			setItemsInCart(updatedCart.items?.length || 0);
+			setTotalPrice(updatedCart.total || 0);
 		} catch (error) {
-		  console.error('Error adding to cart:', error);
+			console.error('Error adding to cart:', error);
 		}
-	  };
+	};
 	
 
 	  const removeFromCart = async (product) => {
