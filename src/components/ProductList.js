@@ -2,10 +2,10 @@
 
 import React, { useContext, useEffect, useState } from "react";
 import ProductItem from "./ProductItem";
-import { itemContext } from "../context/ItemContext";
+import { ItemContext } from "../context/ItemContext";
 
 const ProductList = () => {
-	const { products } = useContext(itemContext);
+	const { products } = useContext(ItemContext);
 	// Keep a local state for sorted products
 	const [sortedProducts, setSortedProducts] = useState([...products]);	 
 	const [minPrice, setMinPrice] = useState(0);
