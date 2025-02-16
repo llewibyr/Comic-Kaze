@@ -1,4 +1,5 @@
 // client/src/components/ProductItem.js
+// Create a new file named ProductItem.js inside the src/components folder and add the following code to it:
 
 import React, { useContext } from "react";
 import { ItemContext } from "../context/ItemContext";

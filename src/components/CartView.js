@@ -1,3 +1,6 @@
+//Shows the items in the cart and allows the user to remove items from the cart. It also shows the total price of the items in the cart. 
+
+
 import React, { useContext } from 'react';
 import { ItemContext } from '../context/ItemContext';
 
@@ -16,7 +19,7 @@ const CartView = () => {
               <p>Price: ${item.price}</p>
               <p>Quantity: {item.quantity}</p>
               <button onClick={() => {
-                   removeFromCart(item._id || item.bookId);
+                   removeFromCart(item._id || item.bookId?._id || item.bookId);
                   }}>
                     Remove One
                 </button>

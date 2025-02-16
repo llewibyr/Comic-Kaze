@@ -54,14 +54,6 @@ const CustomItemContext = ({ children }) => {
       
 	  const addToCart = async (product) => {
 		try {
-			const requestBody = {
-				_id: product._id,  // Ensure this matches the backend expectation
-				title: product.title,
-				author: product.author,
-				price: product.price,
-				image: product.image,
-			};
-
 			console.log('adding to cart:', product);
 	
 			const response = await fetch('http://localhost:5001/api/cart/add', {
@@ -69,7 +61,13 @@ const CustomItemContext = ({ children }) => {
 				headers: {
 					'Content-Type': 'application/json',
 				},
-				body: JSON.stringify(requestBody)
+				body: JSON.stringify ({
+					_id: product._id,  // ✅ Change `bookId` to `_id`
+					title: product.title,
+					author: product.author,
+					price: product.price,
+					image: product.image,
+				}),
 			});
 	
 			if (!response.ok) {
