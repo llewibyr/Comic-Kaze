@@ -4,7 +4,7 @@ import { useNavigate } from "react-router-dom";
 import AuthContext from "../context/AuthContext";
 
 const Login = () => {
-    const [formData, setFormData] = useState({ username: "", password: "" });
+    const [formData, setFormData] = useState({ identifier: "", password: "" });
     const { login } = useContext(AuthContext);
     const navigate = useNavigate();
 
@@ -19,7 +19,8 @@ const Login = () => {
             login(res.data.token);
             navigate("/cart");
         } catch (error) {
-            alert(error.response.data.error);
+            console.error("Login error:", error.response?.data || error);
+            alert(error.response.data.error || "Login failed. Please try again.");
         }
     };
 
@@ -27,7 +28,7 @@ const Login = () => {
         <div>
             <h2>Login</h2>
             <form onSubmit={handleSubmit}>
-                <input type="text" name="username" placeholder="Username" onChange={handleChange} required />
+                <input type="text" name="identifier" placeholder="Username or Email" onChange={handleChange} required />
                 <input type="password" name="password" placeholder="Password" onChange={handleChange} required />
                 <button type="submit">Login</button>
             </form>

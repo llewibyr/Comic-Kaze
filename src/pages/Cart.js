@@ -8,6 +8,8 @@ const Cart = () => {
 
     useEffect(() => {
         const fetchCart = async () => {
+            if (!user || !user.token) return; // ✅ Prevents making a request with undefined token
+            
             try {
                 const res = await axios.get("http://localhost:5001/api/cart", {
                     headers: { Authorization: `Bearer ${user.token}` }

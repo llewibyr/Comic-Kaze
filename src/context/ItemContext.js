@@ -35,32 +35,55 @@ const CustomItemContext = ({ children }) => {
 
 	  useEffect(() => {
 		const fetchCart = async () => {
-		  try {
-			const response = await fetch('http://localhost:5001/api/cart');
+		
+			const token = localStorage.getItem("token"); // Retrieve token from localStorage
+			console.log('token:', token);
+
+			if (!token) {
+				console.warn("No token found, skipping cart fetch.");
+				return;
+			}
+			
+		try {
+			const response = await fetch("http://localhost:5001/api/cart", {
+			  method: "GET",
+			  headers: {
+				"Content-Type": "application/json",
+				Authorization: token ? `Bearer ${token}` : "", // Attach token
+			  },
+			  credentials: "include", // Ensure cookies are sent (for cookie-based auth)
+			});
+			console.log('response:', response);
+	  
 			if (!response.ok) {
-              throw new Error(`HTTP error! status: ${response.status}`);
-            }
+			  throw new Error(`HTTP error! status: ${response.status}`);
+			}
+	  
 			const cartData = await response.json();
 			setCart(cartData.items || []);
 			setItemsInCart((cartData.items || []).length);
 			setTotalPrice(cartData.total || 0);
 		  } catch (error) {
-			console.error('Error fetching cart:', error);
+			console.error("Error fetching cart:", error);
 		  }
 		};
+	  
 		fetchCart();
 	  }, []);
+	  
 	
       
 	  const addToCart = async (product) => {
 		try {
+			const token = localStorage.getItem("token");
 			console.log('adding to cart:', product);
 	
 			const response = await fetch('http://localhost:5001/api/cart/add', {
 				method: 'POST',
 				headers: {
 					'Content-Type': 'application/json',
-				},
+					Authorization: token ? `Bearer ${token}` : "", // Attached token
+			},  credentials: "include", // Ensure cookies are sent (for cookie-based auth)
 				body: JSON.stringify ({
 					_id: product._id,  // ✅ Change `bookId` to `_id`
 					title: product.title,
@@ -87,10 +110,16 @@ const CustomItemContext = ({ children }) => {
 
 	  const removeFromCart = async (product) => {
 		try {
-			
+			const token = localStorage.getItem("token");
+			console.log('removing from cart:', product);
+
 		  const response = await fetch(`http://localhost:5001/api/cart/remove/${product._id}`, {
 			method: 'DELETE',
-		  });
+			headers: {
+				Authorization: token ? `Bearer ${token}` : "", // Attach token
+			  },
+			  credentials: "include",
+			});
 
 		  if (!response.ok) {
 			throw new Error(`HTTP error! status: ${response.status}`);

@@ -1,6 +1,6 @@
 
 import React from 'react';
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
 import ProductList from './components/ProductList';
 import Header from './components/Header';
 import CartView from './components/CartView';
@@ -14,25 +14,24 @@ import Cart from "./pages/Cart";
 
 const App = () => {
 	return (
-	<CustomItemContext>
+	  <CustomItemContext>
 		<AuthProvider>
-		   <Router>
-			  <Header />
-			  <Routes>
-				<Route path="/" element={<ProductList />} />
-                <Route path="/cart" element={<CartView />} />
-				<Route path="/register" element={<Register />} />
-                <Route path="/login" element={<Login />} />
-                <Route path="/cart" element={<PrivateRoute><Cart /></PrivateRoute>}/>
-				<Route path="*" element={<p>Page not found</p>} />
-			  </Routes>
-		   </Router>
+		  <Router>
+			<Header />
+			<Routes>
+			  {/* ✅ Set Register as the default landing page */}
+			  <Route path="/" element={<Navigate to="/register" />} />
+			  <Route path="/register" element={<Register />} />
+			  <Route path="/login" element={<Login />} />
+			  <Route path="/products" element={<ProductList />} />
+			  <Route path="/cart" element={<PrivateRoute><Cart /></PrivateRoute>} />
+			  <Route path="/cart-view" element={<CartView />} />
+			  <Route path="*" element={<p>Page not found</p>} />
+			</Routes>
+		  </Router>
 		</AuthProvider>
-	</CustomItemContext>
+	  </CustomItemContext>
 	);
-};
-
-export default App;
-
-
-
+  };
+  
+  export default App;
