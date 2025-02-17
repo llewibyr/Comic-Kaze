@@ -7,8 +7,8 @@
 
 # Backend Repo : https://github.com/llewibyr/Comic-Kaze-Backend
 
-# Attributions : 
+# Attributions : https://miro.com/login/, trello.com 
 
-# Technologies Used : 
+# Technologies Used : Axios, Bcrypt, JavaScript, React, express, cors, jwt, dotenv
 
-# Next Steps 
+# Next Steps : Next steps include adding a delete function to inside the cart. Making the UI/UX more flashy. As well as, adding more books to database.
