@@ -145,6 +145,20 @@ h2 {
   text-align: right;
 }
 
+.clear-cart-button {
+  background-color: #ff4d4d;
+  color: white;
+  padding: 10px 15px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  margin-top: 10px;
+}
+
+.clear-cart-button:hover {
+  background-color: #cc0000;
+}
+
 .checkout-button {
   background-color: #4CAF50;
   color: white;
