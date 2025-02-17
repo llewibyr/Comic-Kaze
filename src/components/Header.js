@@ -12,7 +12,7 @@ const Header = () => {
 
 	return (
 		<div className="header">
-		  <h1 className="gfg" onClick={() => navigate('/')}>Comic Kaze Bookstore</h1>
+		  <h1 className="gfg" onClick={() => navigate('/')}>Philosopher's Stone</h1>
 		  <h3 style={{ color: "green" }}>Total Price: ${totalPrice}</h3>
 		  <div className="cart-num" onClick={() => navigate('/cart')}>
 			<div className="cart-items">{itemsInCart}</div>
