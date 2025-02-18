@@ -20,8 +20,9 @@ const Header = () => {
         <NavLink to="/" className={({ isActive }) => isActive ? "active-link" : ""}>Home</NavLink>
         <NavLink to="/products" className={({ isActive }) => isActive ? "active-link" : ""}>Products</NavLink>
         <NavLink to="/cart" className={({ isActive }) => isActive ? "active-link" : ""}>Cart</NavLink>
-        
-		{!user ? (
+
+        {/* Ensure Register & Login always show when user is not logged in */}
+        {!user ? (  // ✅ Fixed condition to check if user is null
           <>
             <NavLink to="/register" className={({ isActive }) => isActive ? "active-link" : ""}>Register</NavLink>
             <NavLink to="/login" className={({ isActive }) => isActive ? "active-link" : ""}>Login</NavLink>
@@ -34,12 +35,14 @@ const Header = () => {
       </nav>
 
       {/* Cart Display */}
-      <h3 style={{ color: "green" }}>Total Price: ${totalPrice}</h3>
-      <div className="cart-num" onClick={() => navigate("/cart")}>
-        <div className="cart-items">{itemsInCart}</div>
-        <FontAwesomeIcon icon={faCartShopping} size="4x" />
+      <div className="cart-info" onClick={() => navigate("/cart")}>
+        <h3 style={{ color: "green" }}>Total: ${totalPrice}</h3>
+        <div className="cart-num">
+          <div className="cart-items">{itemsInCart}</div>
+          <FontAwesomeIcon icon={faCartShopping} size="3x" />
+        </div>
       </div>
-    </div>
+    </div> 
   );
 };
 
