@@ -2,7 +2,6 @@ import React, { useContext } from "react";
 import { useNavigate } from "react-router-dom";
 import { ItemContext } from "../context/ItemContext";
 import { AuthContext } from "../context/AuthContext";
-
 import ProductList from "../components/ProductList";
 
 const Home = () => {
