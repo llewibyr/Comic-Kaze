@@ -1,3 +1,18 @@
+@import "tailwindcss";
+
+.cart-items {
+
+  border-radius: 50%;
+  background-color: rgb(20, 158, 105);
+  font-weight: 700;
+  color: aliceblue;
+  width: 30px;
+  height: 30px;
+  font-size: 30px;
+  padding: 10px;
+  top: 10px;
+  position: relative;
+  left: 30px;
 /* Global Styles */
 * {
   margin: 0;
@@ -305,4 +320,5 @@ body {
     align-items: center;
     justify-content: center;
   }
+}
 }
