@@ -1,6 +1,6 @@
 
 import React from 'react';
-import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import ProductList from './components/ProductList';
 import Header from './components/Header';
 import CartView from './components/CartView';
@@ -11,6 +11,7 @@ import PrivateRoute from "./components/PrivateRoute";
 import Register from "./pages/Register";
 import Login from "./pages/Login";
 import Cart from "./pages/Cart";
+import Home from "./pages/Home";
 
 const App = () => {
 	return (
@@ -19,8 +20,7 @@ const App = () => {
 		  <Router>
 			<Header />
 			<Routes>
-			  {/* ✅ Set Register as the default landing page */}
-			  <Route path="/" element={<Navigate to="/register" />} />
+			  <Route path="/" element={<Home />} />
 			  <Route path="/register" element={<Register />} />
 			  <Route path="/login" element={<Login />} />
 			  <Route path="/products" element={<ProductList />} />
