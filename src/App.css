@@ -17,13 +17,47 @@
 
 .header {
   display: flex;
-  justify-content: space-evenly;
+  justify-content: space-between;
   align-items: center;
-  padding: 10px;
-  border-bottom: 1px sold #ccc;
-
+  padding: 15px;
+  background-color: #333;
+  color: white;
 }
 
+.nav-links {
+  display: flex;
+  gap: 15px;
+}
+
+.nav-links a {
+  color: white;
+  text-decoration: none;
+  font-size: 18px;
+  padding: 5px 10px;
+  border-radius: 5px;
+}
+
+.nav-links a:hover {
+  background-color: #555;
+}
+
+.active-link {
+  font-weight: bold;
+  color: yellow;
+}
+
+.logout-btn {
+  background-color: red;
+  color: white;
+  padding: 5px 10px;
+  border: none;
+  cursor: pointer;
+  border-radius: 5px;
+}
+
+.logout-btn:hover {
+  background-color: darkred;
+}
 
 /* card */
 /* client/src/components/ProductItem.css */

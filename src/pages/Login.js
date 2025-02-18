@@ -14,8 +14,14 @@ const Login = () => {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
+        console.log("🔍 Sending Login Request to:", "http://localhost:5001/api/auth/login"); // Debug log
+        
         try {
-            const res = await axios.post("http://localhost:5001/api/auth/login", formData);
+            const res = await axios.post("http://localhost:5001/api/auth/login", formData, {
+                headers: { "Content-Type": "application/json" }, // ✅ Ensure proper headers
+            });
+
+            console.log("🚀 Successfully logged in:", res.data); // Debug log
             login(res.data.token);
             navigate("/cart");
         } catch (error) {
